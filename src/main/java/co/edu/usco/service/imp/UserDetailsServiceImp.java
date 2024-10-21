@@ -1,6 +1,5 @@
 package co.edu.usco.service.imp;
 
-import co.edu.usco.persistence.entity.RoleEntity;
 import co.edu.usco.persistence.entity.UserEntity;
 import co.edu.usco.persistence.repository.UserRepository;
 import lombok.AllArgsConstructor;

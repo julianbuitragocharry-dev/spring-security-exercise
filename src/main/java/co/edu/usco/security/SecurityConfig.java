@@ -3,6 +3,7 @@ package co.edu.usco.security;
 import co.edu.usco.service.imp.UserDetailsServiceImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,19 +24,22 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
         return http
+                .csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/home").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN");
-                    auth.requestMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR");
-                    auth.requestMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR");
-                    auth.requestMatchers("/delete/**").hasAnyAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.POST,"/new").hasAnyAuthority("ADMIN", "CREATOR");
+                    auth.requestMatchers(HttpMethod.PUT,"/edit/**").hasAnyAuthority("ADMIN", "EDITOR");
+                    auth.requestMatchers(HttpMethod.DELETE,"/delete/**").hasAnyAuthority("ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(login -> {
                     login.permitAll();
                     login.successHandler(successHandler());
                 })
-                .exceptionHandling(access -> access.accessDeniedHandler(deniedHandler()))
+                /*.exceptionHandling(exception -> {
+                *    exception.accessDeniedHandler(deniedHandler());
+                })*/
                 .build();
     }
 

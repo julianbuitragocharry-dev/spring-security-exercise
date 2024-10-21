@@ -47,7 +47,7 @@ public class DataLoader implements CommandLineRunner {
                 .username("carlos.esteban")
                 .password(passwordEncoder.encode("carlos"))
                 .isEnabled(true)
-                .roles(Set.of(admin, creator, editor, user))
+                .roles(Set.of(creator, editor, user))
                 .build();
 
         UserEntity nathaliaUser = UserEntity.builder()
