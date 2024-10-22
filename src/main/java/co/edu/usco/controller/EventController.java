@@ -21,8 +21,7 @@ public class EventController {
 
     @GetMapping
     public String events(Model model) {
-        List<EventEntity> eventsList = eventServiceImp.getAll();
-        model.addAttribute("events", eventsList);
+        model.addAttribute("events", eventServiceImp.getAll());
         return "events";
     }
 

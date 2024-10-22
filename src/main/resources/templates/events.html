@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <title>Home Page</title>
+    <title>Eventos</title>
 </head>
 <body>
     <nav>
@@ -12,7 +11,13 @@
             <li><a th:href="@{/home}">Home</a></li>
             <li><a th:href="@{/events}">Eventos</a></li>
             <li><a th:href="@{/events/create}">Crear Evento</a></li>
-            <li><a th:href="@{/logout}">Logout</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-link" style="padding: 0; text-decoration: none;">
+                        Logout
+                    </button>
+                </form>
+            </li>
         </ul>
     </nav>
 
@@ -38,7 +43,5 @@
         </tr>
         </tbody>
     </table>
-
-    <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

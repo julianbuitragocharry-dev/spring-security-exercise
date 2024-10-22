@@ -35,6 +35,10 @@ public class SecurityConfig {
                     login.successHandler(successHandler());
                     login.permitAll();
                 })
+                .logout(logout -> {
+                    logout.logoutUrl("/logout");
+                    logout.logoutSuccessUrl("/login");
+                })
                 .exceptionHandling(exception -> {
                    exception.accessDeniedHandler(deniedHandler());
                 })

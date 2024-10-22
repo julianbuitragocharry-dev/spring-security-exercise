@@ -12,7 +12,7 @@ public class CustomerController {
 
     @GetMapping({"home", "/"})
     public String home() {
-        return "events";
+        return "redirect:/events";
     }
 
     @GetMapping("403")
